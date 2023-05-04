@@ -10,3 +10,7 @@ func Set(values ...bson.D) bson.D {
 
 	return bson.D{{"$set", value}}
 }
+
+func SetObject(obj any) bson.D {
+	return bson.D{{"$set", obj}}
+}
