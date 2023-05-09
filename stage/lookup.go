@@ -13,5 +13,11 @@ type LookupOpt struct {
 //
 //	$lookup，https://docs.mongodb.com/manual/reference/operator/aggregation/lookup/
 func Lookup(value LookupOpt) bson.D {
-	return bson.D{{Key: "$lookup", Value: value}}
+	opt := bson.D{
+		{Key: "from", Value: value.From},
+		{Key: "localField", Value: value.LocalField},
+		{Key: "foreignField", Value: value.ForeignField},
+		{Key: "as", Value: value.As},
+	}
+	return bson.D{{Key: "$lookup", Value: opt}}
 }
