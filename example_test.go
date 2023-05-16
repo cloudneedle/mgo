@@ -2,12 +2,14 @@ package mgo
 
 import (
 	"context"
+
 	"github.com/cloudneedle/mgo/query"
 	"github.com/cloudneedle/mgo/stage"
 
-	"github.com/stretchr/testify/suite"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/suite"
 )
 
 type ExampleTestSuite struct {
@@ -17,13 +19,13 @@ type ExampleTestSuite struct {
 }
 
 func (s *ExampleTestSuite) SetupSuite() {
-	var host = "mongodb://root:root@localhost:27017/?directConnection=true&serverSelectionTimeoutMS=2000"
+	var host = "mongodb://root:123456@10.0.8.3:32193/?directConnection=true"
 	ctx, _ := context.WithTimeout(context.Background(), 3*time.Second)
 	cli, err := NewClient(ctx, host)
 	s.Require().NoError(err)
 	s.Require().NotNil(cli)
 	s.cli = cli
-	s.db = cli.NewDB("test")
+	s.db = cli.NewDB("business")
 }
 
 func TestExampleTestSuite(t *testing.T) {
@@ -126,5 +128,3 @@ func (s *ExampleTestSuite) TestPage() {
 	s.T().Log(users)
 	s.T().Log(count)
 }
-
-// aggs

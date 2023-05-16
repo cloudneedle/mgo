@@ -6,6 +6,6 @@ import "go.mongodb.org/mongo-driver/bson"
 //
 //	{ $in: [ <expression>, <arrayExpression> ] }
 //	https://docs.mongodb.com/manual/reference/operator/aggregation/in/
-func In(values ...interface{}) bson.D {
+func In[T any](values ...T) bson.D {
 	return bson.D{{"$in", values}}
 }
