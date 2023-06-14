@@ -14,3 +14,11 @@ func Project(value ...bson.D) bson.D {
 	}
 	return bson.D{{Key: "$project", Value: fields}}
 }
+
+func ProjectM2D(m ProjectM) bson.D {
+	var fields bson.D
+	for k, v := range m {
+		fields = append(fields, bson.E{Key: k, Value: v})
+	}
+	return bson.D{{Key: "$project", Value: fields}}
+}
